@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './css/index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {PanelGroup,Panel,Button,ButtonToolbar,ListGroup,ListGroupItem} from 'react-bootstrap';
+import {CardGroup,Card,Button,ButtonToolbar,ListGroup,ListGroupItem} from 'react-bootstrap';
 //create the main class for displaying the recipes
 
-class Recipe extends Component {
+export default class Recipe extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -20,13 +20,13 @@ class Recipe extends Component {
     return(
       <div className="Main">
         <h1>RECIPE BOX</h1>
-        <PanelGroup accordion id="recipes">
+        <CardGroup accordion id="recipes">
           {recipes.map((recipe, index) => (
-            <Panel eventKey={index} key={index}>
-              <Panel.Heading>
-                <Panel.Title className="title" toggle>{recipe.name}</Panel.Title>
-              </Panel.Heading>
-              <Panel.Body collapsible>
+            <Card eventKey={index} key={index}>
+              <Card.Header>
+                <Card.Title className="title" toggle>{recipe.name}</Card.Title>
+              </Card.Header>
+              <Card.Body collapsible>
                 <ListGroup>
                   {recipe.ingredients.map((ingredient, index) => (
                     <ListGroupItem key={index}>{ingredient}</ListGroupItem>
@@ -36,10 +36,10 @@ class Recipe extends Component {
                   <Button bsStyle="warning">Edit</Button>
                   <Button bsStyle="danger">Delete</Button>
                 </ButtonToolbar>
-              </Panel.Body>
-            </Panel>
+              </Card.Body>
+            </Card>
           ))}
-        </PanelGroup>
+        </CardGroup>
         <Button bsStyle="primary">Add Recipe</Button>
       </div>
     );
